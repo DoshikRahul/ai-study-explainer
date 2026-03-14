@@ -8,9 +8,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "AI Study Topic Explainer",
+  title: "LuminaLearn | AI Study Companion",
   description:
-    "Enter any study topic and get a clear, AI-powered explanation. Built with Next.js and Google Gemini AI.",
+    "Explore any topic with LuminaLearn. Get clear, dynamic AI-powered explanations built with Next.js and Gemini AI.",
 };
 
 export default function RootLayout({

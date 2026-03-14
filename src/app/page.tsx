@@ -208,9 +208,9 @@ export default function Home() {
               </svg>
             </button>
             <div className="flex items-center gap-2">
-              <span className="text-2xl">🎓</span>
+              <span className="text-2xl">✨</span>
               <h1 className="text-xl font-black tracking-tight text-slate-800 hidden sm:block">
-                Study<span className="text-indigo-600">Explainer</span>
+                Lumina<span className="text-indigo-600">Learn</span>
               </h1>
             </div>
           </div>
@@ -237,10 +237,10 @@ export default function Home() {
                   Powered by Futuristic Google AI
                 </div>
                 <h1 className="mb-4 bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 bg-clip-text text-5xl md:text-6xl font-black tracking-tight text-transparent drop-shadow-sm px-2">
-                  What do you want to learn?
+                  What do you want to master?
                 </h1>
                 <p className="mx-auto max-w-lg text-lg font-medium text-slate-500 leading-relaxed px-4">
-                  Ask me about Photosynthesis, Quantum Physics, History, Math, or anything you're curious about!
+                  Ask me about the Butterfly Effect, how Black Holes work, the history of Rome, or anything you're curious about!
                 </p>
               </div>
             )}

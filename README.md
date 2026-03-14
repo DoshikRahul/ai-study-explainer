@@ -1,79 +1,77 @@
-# AI Study Topic Explainer
+# ✨ LuminaLearn
 
-An AI-powered web application that helps students understand any study topic by providing clear, simple explanations. Built with **Next.js**, **Tailwind CSS**, and **Google Gemini AI**.
+LuminaLearn (formerly AI Study Explainer) is a modern, dynamic, and engaging AI-powered study companion chat application. Built with Next.js and the Google Gemini API, LuminaLearn offers a beautifully designed multi-turn chat interface to explore complex topics like Black Holes, the Butterfly Effect, history, or anything else you're curious about!
 
-## Features
+## 🚀 Features
+- **Multi-Turn Chat Interface:** Engage in continuous conversations with context-aware AI.
+- **Model Selection:** Effortlessly switch between cutting-edge Gemini models (e.g., `gemini-3-flash`, `gemini-2.5-pro`).
+- **Engaging UI:** A premium, vibrant design featuring glassmorphism, smooth animations, and tailored color gradients.
+- **Auto-Scrolling & Responsive Design:** Fully optimized for both desktop and mobile viewing with intelligent scrolling.
+- **Local History:** Saves your chat sessions locally so you can seamlessly revisit your discussions.
 
-- **Topic Input**: Enter any study topic you want to learn about
-- **AI Explanations**: Get clear, student-friendly explanations powered by Google Gemini
-- **Loading States**: Visual feedback while the AI generates a response
-- **Error Handling**: Graceful error messages for invalid input or API issues
-- **Responsive Design**: Works on desktop and mobile devices
+## 🛠️ Tech Stack
+- **Framework:** [Next.js](https://nextjs.org/) (App Directory)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **AI Integration:** [Google Gemini API](https://aistudio.google.com/)
 
-## How the AI API is Used
+---
 
-This project uses the **Google Gemini API** (`gemini-2.0-flash` model) to generate topic explanations:
+## 💻 Getting Started Locally
 
-1. The user enters a study topic in the input field
-2. The topic is sent to a Next.js API route (`/api/explain`)
-3. The API route calls the Gemini API with a prompt designed to explain the topic simply
-4. The AI response is returned and displayed in a formatted card
-
-## Setup Instructions
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- A Google Gemini API key from [Google AI Studio](https://aistudio.google.com/apikey)
-
-### Installation
-
-1. Clone the repository:
+1. **Clone the repository** (if you haven't already):
    ```bash
-   git clone <your-repo-url>
+   git clone <repository-url>
    cd ai-study-explainer
    ```
 
-2. Install dependencies:
+2. **Install dependencies:**
    ```bash
    npm install
    ```
 
-3. Create a `.env.local` file in the root directory:
-   ```
-   GEMINI_API_KEY=your_api_key_here
+3. **Set up Environment Variables:**
+   Create a `.env.local` file in the root directory and add your Google Gemini API key:
+   ```env
+   GEMINI_API_KEY=your_google_gemini_api_key_here
    ```
 
-4. Start the development server:
+4. **Run the development server:**
    ```bash
    npm run dev
    ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
+5. **Open your browser:**
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-## Project Structure
+---
 
-```
-ai-study-explainer/
-├── src/
-│   ├── app/
-│   │   ├── api/explain/route.ts  # API endpoint for explanations
-│   │   ├── globals.css           # Global styles
-│   │   ├── layout.tsx            # Root layout with metadata
-│   │   └── page.tsx              # Main page
-│   ├── components/
-│   │   ├── TopicInput.tsx        # Topic input form component
-│   │   └── ExplanationCard.tsx   # Explanation display component
-│   └── lib/
-│       └── aiClient.ts           # Gemini API client library
-├── .env.local                    # API key (not committed)
-├── package.json
-└── README.md
-```
+## 🌍 How to Deploy on Vercel
 
-## Tech Stack
+Vercel is the optimal platform for deploying Next.js applications, providing an automatic and seamless CI/CD pipeline directly from your GitHub repository.
 
-- **Next.js** (App Router)
-- **TypeScript**
-- **Tailwind CSS**
-- **Google Gemini AI API**
+### Prerequisites
+- A GitHub, GitLab, or Bitbucket account.
+- A free [Vercel account](https://vercel.com/signup).
+
+### Deployment Steps
+1. **Push your code to a Git repository:**
+   Ensure all your project files, excluding `node_modules` and `.env.local`, are pushed to your GitHub/GitLab repository.
+
+2. **Import Project to Vercel:**
+   - Log in to your Vercel Dashboard.
+   - Click the **"Add New Project"** button.
+   - Import the Git repository where you pushed the `ai-study-explainer` code.
+
+3. **Configure the Project:**
+   - **Framework Preset:** Vercel will automatically detect **Next.js**. Keep this default.
+   - **Root Directory:** If your Next.js app is inside the `ai-study-explainer` folder within the repo, select that folder. If it's already the root, leave it as is.
+   - **Environment Variables:** This is **CRITICAL**. You must provide your Gemini API Key for the app to work in production.
+     - **Key:** `GEMINI_API_KEY`
+     - **Value:** Paste your actual Google Gemini API key here.
+
+4. **Deploy:**
+   - Click the **"Deploy"** button.
+   - Vercel will build your application and immediately assign it a live URL. 
+
+5. **Success! 🎉**
+   Once the build completes, Vercel will provide you with the production URL of your app. Share it with the world!

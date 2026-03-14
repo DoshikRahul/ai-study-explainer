@@ -32,7 +32,7 @@ export default function TopicInput({ onSubmit, isLoading }: TopicInputProps) {
             setTopic(e.target.value);
             if (error) setError("");
           }}
-          placeholder="e.g. Photosynthesis, Quantum Physics, World War II..."
+          placeholder="e.g. The Butterfly Effect, Black Holes, AI..."
           disabled={isLoading}
           className="w-full rounded-2xl border-2 border-slate-200 bg-white px-6 py-5 pr-40 text-lg text-slate-800 placeholder-slate-400 shadow-sm transition-all duration-300 focus:border-indigo-400 focus:outline-none focus:ring-4 focus:ring-indigo-400/20 disabled:opacity-50 hover:border-slate-300"
         />
