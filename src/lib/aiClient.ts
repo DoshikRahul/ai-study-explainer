@@ -2,12 +2,13 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export async function generateChatResponse(
   messages: { role: "user" | "model"; text: string }[],
-  modelName: string = "gemini-3-flash-preview"
+  modelName: string = "gemini-3-flash-preview",
+  customApiKey?: string
 ): Promise<string> {
-  const apiKey = process.env.GEMINI_API_KEY;
+  const apiKey = customApiKey || process.env.GEMINI_API_KEY;
 
   if (!apiKey) {
-    throw new Error("GEMINI_API_KEY is missing from environment variables.");
+    throw new Error("GEMINI_API_KEY is missing. Please provide your API key in the setup screen.");
   }
 
   const genAI = new GoogleGenerativeAI(apiKey);

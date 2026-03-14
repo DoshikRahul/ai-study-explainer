@@ -5,6 +5,7 @@ import Sidebar from "@/components/Sidebar";
 import ModelSelector from "@/components/ModelSelector";
 import ChatInput from "@/components/ChatInput";
 import ChatMessage, { ChatMessageData } from "@/components/ChatMessage";
+import LoginPage from "@/components/LoginPage";
 
 export interface ChatSession {
   id: string;
@@ -21,7 +22,22 @@ export default function Home() {
   const [selectedModel, setSelectedModel] = useState("gemini-3-flash-preview");
   
   const [isLoading, setIsLoading] = useState(false);
+  const [apiKey, setApiKey] = useState<string | null>(null);
+  const [username, setUsername] = useState<string | null>(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Check for saved API key and username on initial render
+  useEffect(() => {
+    const savedKey = localStorage.getItem("geminiApiKey");
+    const savedUsername = localStorage.getItem("luminaLearnUsername");
+    
+    if (savedKey && savedUsername) {
+      setApiKey(savedKey);
+      setUsername(savedUsername);
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   // Load chat history from localStorage on initial render
   useEffect(() => {
@@ -117,7 +133,8 @@ export default function Home() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 
           messages: apiPayload, 
-          model: selectedModel 
+          model: selectedModel,
+          customApiKey: apiKey
         }),
       });
 
@@ -161,8 +178,21 @@ export default function Home() {
     setActiveChatId(null);
   };
 
+  if (!isAuthenticated) {
+    return (
+      <LoginPage 
+        onLogin={(name, key) => {
+          setUsername(name);
+          setApiKey(key);
+          setIsAuthenticated(true);
+        }} 
+      />
+    );
+  }
+
   return (
     <div className="relative flex min-h-screen overflow-hidden bg-slate-50">
+
       {/* Bright, cheerful background gradient effects */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <div className="absolute -left-40 -top-40 h-[600px] w-[600px] rounded-full bg-amber-200/40 blur-[100px] animate-float" />
@@ -215,11 +245,16 @@ export default function Home() {
             </div>
           </div>
           
-          <ModelSelector 
-            selectedModel={selectedModel} 
-            onModelChange={setSelectedModel} 
-            disabled={isLoading}
-          />
+          <div className="flex items-center gap-4">
+            <span className="hidden md:block text-sm font-semibold text-slate-600 bg-slate-100 px-3 py-1.5 rounded-full">
+              👤 {username}
+            </span>
+            <ModelSelector 
+              selectedModel={selectedModel} 
+              onModelChange={setSelectedModel} 
+              disabled={isLoading}
+            />
+          </div>
         </header>
 
         {/* Scrollable Chat Feed */}

@@ -4,7 +4,7 @@ import { generateChatResponse } from "@/lib/aiClient";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { messages, model } = body;
+    const { messages, model, customApiKey } = body;
 
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json(
@@ -13,7 +13,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const responseText = await generateChatResponse(messages, model);
+    const responseText = await generateChatResponse(messages, model, customApiKey);
 
     return NextResponse.json({ response: responseText });
   } catch (error: any) {
