@@ -12,7 +12,10 @@ export async function generateChatResponse(
   }
 
   const genAI = new GoogleGenerativeAI(apiKey);
-  const model = genAI.getGenerativeModel({ model: modelName });
+  const model = genAI.getGenerativeModel({ 
+    model: modelName,
+    systemInstruction: "You are an expert AI tutor designed to explain complex subjects to students. Your explanations should be clear, engaging, easy to understand, and fun. Use markdown formatting, analogies, and bullet points to break down complex concepts.",
+  });
 
   const formattedHistory = messages.slice(0, -1).map((msg) => ({
     role: msg.role,
@@ -25,7 +28,6 @@ export async function generateChatResponse(
   try {
     chatSession = model.startChat({
       history: formattedHistory,
-      systemInstruction: "You are an expert AI tutor designed to explain complex subjects to students. Your explanations should be clear, engaging, easy to understand, and fun. Use markdown formatting, analogies, and bullet points to break down complex concepts.",
     });
 
     const result = await chatSession.sendMessage(latestMessage.text);
